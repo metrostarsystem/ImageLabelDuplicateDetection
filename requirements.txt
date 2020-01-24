@@ -1,0 +1,9 @@
+tensorflow
+keras
+scipy
+numpy
+matplotlib
+opencv-python
+Pillow
+glob2
+pytest
