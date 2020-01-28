@@ -2,5 +2,5 @@
 "model_name": "art", 
 "scale_factor_for_threshold": 0.545, 
 "target_image_file_name":"test66.jpg",
-"target_directory":"TestData"
+"target_directory":"test_data"
 }
