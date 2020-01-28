@@ -6,7 +6,7 @@ This notebook is used to demonstrate our capabilities to identify images which a
 
 - From the SageMaker Homepage select the notebook instance and then "Open Jupyter"
 
-<img style="float: left;" src="readMeImages/SageMaker_Homepage.png"/>
+<img style="float: left;" src="read_me_images/SageMaker_Homepage.png"/>
 
 
 - Inside the Jupyter Notebook "Upload" LabelValidation.ipynb, LabelValidationFunc.py, FraudLabelConfig.json, and all images from TestData directory. 
@@ -17,7 +17,7 @@ This notebook is used to demonstrate our capabilities to identify images which a
 - As an easier method, zip the existing TestData directory and upload the zip file
 
 
-<img style="float: left;" src="readMeImages/lblFraudUpload.png"/>
+<img style="float: left;" src="read_me_images/lblFraudUpload.png"/>
 
 <br/><br/>
 
@@ -33,7 +33,7 @@ This notebook is used to demonstrate our capabilities to identify images which a
 - Click to open LabelValidation.ipynb
 
 
-<img style="float: left;" src="readMeImages/lblImgTerm.png"/>
+<img style="float: left;" src="read_me_images/lblImgTerm.png"/>
 <br/>
 
 
@@ -42,10 +42,10 @@ This notebook is used to demonstrate our capabilities to identify images which a
 - If UI asks to select Kernel upon opening notebook, enter X, and cancel
 - Make certain that you are using the correct kernel "conda_tensorflow_p36" kernel
 
-<img style="float: left;" src="readMeImages/lblImgEnv.png"/>
+<img style="float: left;" src="read_me_images/lblImgEnv.png"/>
 <br/><br/>
 
-<img style="float: left;" src="readMeImages/Tensorflow_Kernel_Version.png"/>
+<img style="float: left;" src="read_me_images/Tensorflow_Kernel_Version.png"/>
 <br/><br/>
 
 
