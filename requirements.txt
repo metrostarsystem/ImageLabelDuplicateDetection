@@ -1,0 +1,7 @@
+keras
+glob2 
+matplotlib 
+numpy
+Pillow 
+scipy
+tensorflow
