@@ -1,8 +1,19 @@
 # Fraudulent Image Detections
 This notebook is used to demonstrate our capabilities to identify images which are closly related and could constitute a fradulent image label or identify a trademark violation of an organzation's IP.
 
+# Getting Started
+## Local environment
 
-# Configure and run the Notebook in AWS Sagemaker
+```
+conda env create -f environment.yml
+```
+
+The above command will create a local conda environment called `ImageLabelDuplicateDetection_dev`. To run the test suite, we need to bring in additional dependencies by installing `pytest` as follows:
+```
+conda install pytest
+```
+
+## Configure and run the Notebook in AWS Sagemaker
 
 - From the SageMaker Homepage select the notebook instance and then "Open Jupyter"
 
@@ -22,11 +33,7 @@ This notebook is used to demonstrate our capabilities to identify images which a
 <br/><br/>
 
 
-
-
-
-
-# Unzip TestData.zip in a SageMaker terminal
+### Unzip TestData.zip in a SageMaker terminal
 
 - Open a terminal
 - Go to the terminal, cd to SageMaker, unzip the labelImages - `unzip labelImages.zip`
@@ -38,7 +45,7 @@ This notebook is used to demonstrate our capabilities to identify images which a
 
 
 
-# When in  Jupyter Notebook, use the "conda_tensorflow_p36" kernel
+### When in  Jupyter Notebook, use the "conda_tensorflow_p36" kernel
 - If UI asks to select Kernel upon opening notebook, enter X, and cancel
 - Make certain that you are using the correct kernel "conda_tensorflow_p36" kernel
 
