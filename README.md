@@ -4,22 +4,17 @@ This notebook is used to demonstrate our capabilities to identify images which a
 # Getting Started
 ## Local environment
 
+## Using `pip`
 ```
-conda create --name ImageLabelDuplicateDetection_dev python=3.7
-conda activate ImageLabelDuplicateDetection_dev
-pip install Keras==2.3.1
-pip install Keras-Applications==1.0.8 
-pip install Keras-Preprocessing==1.1.0
-pip install numpy==1.17.5
-pip install Pillow==6.2.0
-pip install scipy==1.3.1
-pip install seaborn==0.9.0
-pip install tensorboard==2.0.0
-pip install tensorflow==2.0.0
-pip install tensorflow-estimator==2.0.1
-conda install jupyter
+pip install -r requirements.txt
 ```
 
+## Using `conda`
+The following command will create a new conda environment called `ImageLabelDuplicateDetection_dev`:
+```
+conda env create -f environment.yml
+```  
+## Installing Test dependencies
 The above command will create a local conda environment called `ImageLabelDuplicateDetection_dev`. To run the test suite, we need to bring in additional dependencies by installing `pytest` as follows:
 ```
 conda install pytest
