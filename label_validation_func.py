@@ -12,7 +12,6 @@ import numpy as np
 import os
 import glob
 import json
-import pytest
 
 # set seed for reproducible results
 seed(200)
