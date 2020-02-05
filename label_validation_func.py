@@ -4,7 +4,6 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D, ZeroPadding2D
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 from scipy.spatial import distance as dist
-import cv2
 from numpy.random import seed
 import matplotlib.pyplot as plt
 from PIL import Image
@@ -13,7 +12,6 @@ import numpy as np
 import os
 import glob
 import json
-import pytest
 
 # set seed for reproducible results
 seed(200)
@@ -166,7 +164,7 @@ def generate_model_art(target_image_file_name, l2_reg, x):
     similar_diff = 12.4 / 0.6
     cor02 = dist.chebyshev(be_l[:], be_h[:])
 
-    return label_model, be_l, cor01, similar_diff, x_out_1_only
+    return label_model, similar_diff, x_out_1_only
 
 
 def display_fraudulent_labels_linear(
@@ -215,7 +213,7 @@ def display_fraudulent_labels_linear(
         cor02 = sum(np.abs(be_l[1:] - be_h[1:]))
 
         # Threshold the correlation product to determine fraudulence
-        if (diff < similar_diff * percent_thres) & (test_img_array == target_image_file_name):
+        if cor02 < similar_diff * percent_thres:
             img_list.append(test_img_array)
             file_name_list.append(fn)
 
@@ -249,15 +247,7 @@ def display_fraudulent_labels_linear(
 
 
 def display_fraudulent_labels_art(
-    mypath,
-    percent_thres,
-    label_model,
-    be_l,
-    cor01,
-    similar_diff,
-    target_image_file_name,
-    x_only,
-    x,
+    mypath, percent_thres, label_model, similar_diff, target_image_file_name, x_only, x,
 ):
     bin_group = 5
     max_histo_level = 40
@@ -301,7 +291,7 @@ def display_fraudulent_labels_art(
         print(diff)
 
         # Threshold the correlation product to determine fraudulence
-        if (diff < similar_diff * percent_thres) & (test_label_array == target_image_file_name):
+        if diff < similar_diff * percent_thres:
             img_list.append(test_label_array)
             file_name_list.append(fn)
 
@@ -393,85 +383,3 @@ def display_non_fraudulent_labels(file_name_list, mypath):
             plt.show()
 
     return len(img_list)
-
-
-def test_label_art_model():
-    abelImages_dir = "./test_data"
-
-    seed(200)
-    tf.compat.v1.random.set_random_seed(1000)
-
-    ConfigJson = {}
-    with open("fraud_label_config.json", "r") as inpfile:
-        ConfigJson = json.load(inpfile)
-    ModelName = ConfigJson["model_name"]
-    ImagePathName = labelImages_dir + "/" + ConfigJson["target_directory"] + "/"
-    percent_thres = float(ConfigJson["scale_factor_for_threshold"])
-    TargetImageFileName = ImagePathName + ConfigJson["target_image_file_name"]
-    x = np.zeros((2, 224, 224, 3))
-
-    l2_reg = 0
-    mypath = ImagePathName + "/"
-
-    [lb_model, be_l, cor01, similar_diff, x_only] = GenerateModelArt(
-        TargetImageFileName, l2_reg, x
-    )
-    file_name_list = DisplayFraudulentLabelsArt(
-        mypath,
-        percent_thres,
-        lb_model,
-        be_l,
-        cor01,
-        similar_diff,
-        TargetImageFileName,
-        x_only,
-        x,
-    )
-
-    test_output = [
-        "./test_data/label_images/Beer_Label_22.jpg",
-        "./test_data/label_images/Bud_Label_LessColors.jpg",
-        "./test_data/label_images/Bud_Label_hozFlip.jpg",
-        "./test_data/label_images/Beer_Label_44.jpg",
-    ]
-    assert file_name_list == test_output
-
-
-def test_label_linear_model():
-    labelImages_dir = "./test_data"
-
-    seed(200)
-    tf.compat.v1.random.set_random_seed(1000)
-
-    ConfigJson = {}
-    with open("fraud_label_config.json", "r") as inpfile:
-        ConfigJson = json.load(inpfile)
-    ModelName = ConfigJson["model_name"]
-    ImagePathName = labelImages_dir + "/" + ConfigJson["target_directory"] + "/"
-    percent_thres = float(ConfigJson["scale_factor_for_threshold"])
-    TargetImageFileName = ImagePathName + ConfigJson["target_image_file_name"]
-    x = np.zeros((2, 224, 224, 3))
-
-    l2_reg = 0
-    mypath = ImagePathName + "/"
-
-    [lb_model, be_l, num_bins, max_histo_level] = GenerateModelLinear(
-        TargetImageFileName, l2_reg, x
-    )
-    file_name_list = DisplayFraudulentLabelsLinear(
-        mypath,
-        percent_thres,
-        lb_model,
-        be_l,
-        num_bins,
-        max_histo_level,
-        TargetImageFileName,
-        x,
-    )
-
-    test_output = [
-        "./test_data/label_images/Bud_Label_hozFlip.jpg",
-        "./test_data/label_images/Beer_Label_44.jpg",
-    ]
-
-    assert file_name_list == test_output
