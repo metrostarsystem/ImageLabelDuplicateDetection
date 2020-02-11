@@ -28,7 +28,7 @@ conda install pytest
 
 
 - Inside the Jupyter Notebook "Upload" LabelValidation.ipynb, LabelValidationFunc.py, FraudLabelConfig.json, and all images from TestData directory. 
-- NOTE: Be certain all images are uploaded under a TestData directory in you SageMake Jupyter instance.
+- NOTE: Be certain all images are uploaded under a TestData directory in your SageMaker Jupyter instance.
 
 - Also, you may need to select 'Upload' button twice to upload your files properly.
 
