@@ -32,7 +32,7 @@ conda install pytest
 
 - Also, you may need to select 'Upload' button twice to upload your files properly.
 
-- As an easier method, zip the existing TestData directory and upload the zip file
+- As an easier method, zip the existing TestData directory of images and upload the zip file, labelImages.zip
 
 
 <img style="float: left;" src="read_me_images/lblFraudUpload.png"/>
@@ -43,7 +43,7 @@ conda install pytest
 ### Unzip TestData.zip in a SageMaker terminal
 
 - Open a terminal
-- Go to the terminal, cd to SageMaker, unzip the labelImages - `unzip labelImages.zip`
+- Go to the terminal, cd to SageMaker, unzip the labelImages.zip - `unzip labelImages.zip`, from the previous step in the TestData directory
 - Click to open LabelValidation.ipynb
 
 
@@ -61,5 +61,4 @@ conda install pytest
 
 <img style="float: left;" src="read_me_images/Tensorflow_Kernel_Version.png"/>
 <br/><br/>
-
 
